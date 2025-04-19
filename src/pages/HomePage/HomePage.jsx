@@ -3,6 +3,7 @@ import QuestionCard from '../../components/QuestionCard/QuestionCard';
 import { API_URL } from '../../constans';
 import cls from './HomePage.module.css';
 import { use } from 'react';
+import QuestionCardList from '../../components/QuestionCardList/QuestionCardList';
 
 
 
@@ -26,12 +27,7 @@ function HomePage() {
         getQuestion();
     }, [])
     return (
-        <>
-            {question.map((card, index) => {
-                return <QuestionCard card={card} key={index} />
-            })}
-            {/* <button onClick={getQuestion}>get question</button> */}
-        </>
+       <QuestionCardList cards={question} />
     );
 }
 
