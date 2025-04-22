@@ -4,6 +4,8 @@ import { API_URL } from '../../constans';
 import cls from './HomePage.module.css';
 import { use } from 'react';
 import QuestionCardList from '../../components/QuestionCardList/QuestionCardList';
+import Loader from '../../components/Loader/Loader';
+import { delayFn } from '../../helpers/delayFn';
 
 
 
@@ -11,23 +13,32 @@ import QuestionCardList from '../../components/QuestionCardList/QuestionCardList
 function HomePage() {
 
     const [question, setQuestion] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
     const getQuestion = async () => {
         try {
+            setIsLoading(true)
+            await delayFn();
             const response = await fetch(`${API_URL}/react`);
             const question = await response.json();
 
             setQuestion(question)
             console.log("question", question)
         } catch (error) {
-            console, error(error)
+            console.error(error)
+        } finally {
+            setIsLoading(false)
         }
     }
+
     useEffect(() => {
         getQuestion();
     }, [])
     return (
-       <QuestionCardList cards={question} />
+        <>
+            {isLoading && <Loader />}
+            <QuestionCardList cards={question} />
+        </>
     );
 }
 
