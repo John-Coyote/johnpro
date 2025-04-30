@@ -7,6 +7,7 @@ import QuestionCardList from '../../components/QuestionCardList/QuestionCardList
 import Loader from '../../components/Loader/Loader';
 import { delayFn } from '../../helpers/delayFn';
 import { useFetch } from '../../hooks/useFetch';
+import SearchInput from '../../components/SearchInput/SearchInput';
 
 
 
@@ -23,23 +24,25 @@ function HomePage() {
         return question
     })
 
-useEffect(() => {
-    getQuestion("react");
-}, []);
+    useEffect(() => {
+        getQuestion("react");
+    }, []);
 
-const onSearchChangeHandler = (e) => {
-    console.log(e.target.value)
-    setsearchValue(e.target.value);
-}
-return (
-    <>
-        <input type="text" value={searchValue} onChange={onSearchChangeHandler} />
+    const onSearchChangeHandler = (e) => {
+        console.log(e.target.value)
+        setsearchValue(e.target.value);
+    }
+    return (
+        <>
+            <div className={cls.controlsConteiner}>
+               <SearchInput value={searchValue} onChange={onSearchChangeHandler} />
+            </div>
 
-        {isLoading && <Loader />}
-        {error && <p>{error}</p>}
-        <QuestionCardList cards={question} />
-    </>
-);
+            {isLoading && <Loader />}
+            {error && <p>{error}</p>}
+            <QuestionCardList cards={question} />
+        </>
+    );
 }
 
 export default HomePage;
