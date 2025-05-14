@@ -8,7 +8,7 @@ const inputId = useId();
 
     return (<div className={cls.inputContainer}>
         <label htmlFor={inputId}>
-            {<SearchIcon/>}
+            {<SearchIcon className={cls.searchIcon}/>}
         </label>
         <input type="text" id={inputId} className={cls.input} placeholder= "search" value={value} onChange={onChange} />
     </div>);

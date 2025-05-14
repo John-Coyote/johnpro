@@ -37,7 +37,7 @@
     font-style: italic;
     text-align: justify;
     cursor: pointer;
-    transition: filter .8s ease-in-out;
+    transition: filter .3s ease-in-out;
 }
 
 .cardAnswer:hover {
